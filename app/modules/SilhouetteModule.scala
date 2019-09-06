@@ -79,8 +79,9 @@ class SilhouetteModule extends AbstractModule with ScalaModule {
 
   @Provides
   @Named("password-repository")
-  def providePasswordDAO(dbConfigProvider: DatabaseConfigProvider,
-                         loginDao: LoginDAO): PasswordDAO =
+  def providePasswordDAO(
+      dbConfigProvider: DatabaseConfigProvider,
+      loginDao: LoginDAO): DelegableAuthInfoDAO[PasswordInfo] =
     new PasswordDAO(dbConfigProvider, loginDao)
 
   /**
